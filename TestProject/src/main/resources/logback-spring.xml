@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="30 seconds">   <!-- logback 구현체가 설정을 확인하는 주기 - 30초 -> 30 초마다 스캔해서 변경사항 확인 -->
+    <property name="moduleId" value="TestProject"/>   <!-- moduleId는 프로젝트가 설치된 폴더명 또는 구분할 수 있는 식별자이면 됨  -->
+    <property name="type" value="test_project"/>      <!-- 로그파일명을 구성하는 인자 -->
+    <property name="logback" value="logback"/>        <!-- log를 저장할 최종 디렉토리명 -->
+    <property name="logdir" value="/Users/kisung.kim/Documents/workspace/kisung/spring_boot_basic/TestProject"/>  <!-- log를 저장할 최종 디렉토리 경로 설정 -->
+
+    <!-- Appenders - 로그 출력 대상 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">       <!--  로그를 출력할 대상을 정의 - 콘솔에 로그를 출력하는 ConsoleAppender 사용 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">          <!-- 로그 레벨 필터 설정 -->
+            <level>DEBUG</level>                                                <!-- DEBUG 레벨 이상의 로그만 출력 -->
+        </filter>
+        <encoder>                                                               <!-- 로그 메시지의 출력 형식을 정의 -->
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%-5level] [%thread] %logger{30} %msg%n</pattern>    <!-- 로그발생시간, 로그 5레벨, 스레드명, 로거명(30으로 길이 제한), 로그 메시지, 줄바꿈 -->
+        </encoder>
+    </appender>
+    <root level="INFO">                                                         <!-- 기본 로거 설정 - INFO로 설정 (INFO 레벨 이상의 로그 (INFO, WARN, ERROR 등)만 출력) -->
+        <appender-ref ref="console"/>                                           <!-- 위에서 정의한 console appender를 사용하여 로그를 출력 -->
+    </root>
+
+</configuration>

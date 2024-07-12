@@ -1,6 +1,9 @@
 package com.example.TestProject.data.dto;
 
 import com.example.TestProject.data.entity.ProductEntity;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 // 상품 정보를 담고 다른 계층 간에 데이터를 전송
@@ -15,9 +18,20 @@ import lombok.*;
 public class ProductDto {   // ProductDto라는 이름의 공개 클래스 정의
 
     // 클래스의 필드(변수)를 정의 - 상품의 특정한 속성 정의
+    @NotNull                            // 유효성 검사 - Null 허용 X
     private String productId;           // 상품 ID
+
+    @NotNull                            // 유효성 검사 - Null 허용 X
     private String productName;         // 상품명
+
+    @NotNull                            // 유효성 검사 - Null 허용 X
+    @Min(value = 500)                   // 유효성 검사 - 최소값 500
+    @Max(value = 3000000)               // 유효성 검사 - 최대값 3000000
     private int productPrice;           // 상품 가격
+
+    @NotNull                            // 유효성 검사 - Null 허용 X
+    @Min(value = 0)                     // 유효성 검사 - 최소값 0
+    @Max(value = 9999)                  // 유효성 검사 - 최대값 9999
     private int productStock;           // 상품 재고 수량
 
     // toEntity 메서드를 정의 - ProductDto 객체를 ProductEntity 객체로 변환하는 역할
