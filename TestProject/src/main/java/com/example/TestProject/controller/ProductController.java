@@ -1,5 +1,7 @@
 package com.example.TestProject.controller;
 
+import com.example.TestProject.common.Constants;
+import com.example.TestProject.common.exception.TestProjectException;
 import com.example.TestProject.data.dto.ProductDto;
 import com.example.TestProject.service.ProductService;
 import jakarta.validation.Valid;
@@ -74,6 +76,11 @@ public class ProductController {            // ProductController 클래스 선�
 
         // HTTP 응답 상태 코드를 OK(200)로 설정하고, response 객체를 응답 본문으로 설정하여 반환
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PostMapping(value = "/product/exception")                          // 해당 메서드가 HTTP POST 요청을 처리함을 명시 - 요청 URL: /product/exception
+    public void exceptionTest() throws TestProjectException {           // 메서든 선언 - TestProjectException 예외를 던질 수 있음
+        throw new TestProjectException(Constants.ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, "의도한 에러가 발생했습니다."); // 새로운 TestProjectException 예외를 생성하고 던짐
     }
 
     /*
